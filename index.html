@@ -40,8 +40,78 @@
             </li>
           </ul>
         </address>
+
+          <!-- MOBİL MENÜ AÇMA BUTONU (C1 - Sadece mobilde görünecek) -->
+          <button type="button" class="menu-open-btn" aria-label="Menuyu ac">
+            <svg width="24" height="24">
+              <use href="./images/icons.svg/symbol-defs.svg#icon-mobile-menu-btn" />
+            </svg>
+          </button>
+
       </div>
     </header>
+
+    <div class="mobile-menu is-open">
+      <div class="mobile-menu-container">
+        <!-- Kapatma Butonu -->
+        <button type="button" class="menu-close-btn" aria-label="Menuyu kapat">
+          <svg width="8" height="8">
+            <use href="./images/icons.svg/symbol-defs.svg#icon-close" />
+          </svg>
+        </button>
+    
+        <!-- Menü Linkleri -->
+        <nav class="mobile-nav">
+          <ul>
+            <li><a href="#" class="active">Studio</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contacts</a></li>
+          </ul>
+        </nav>
+    
+        <!-- İLETİŞİM VE SOSYAL MEDYA ALANI (EN ALTTA DURACAK GRUP) -->
+        <div class="mobile-contacts-connect">
+          <address class="mobile-address">
+            <ul>
+              <li><a href="tel:110001111111" class="mobile-phone">+11 (000) 111-11-11</a></li>
+              <li><a href="mailto:info@devstudio.com" class="mobile-email">info@devstudio.com</a></li>
+            </ul>
+          </address>
+    
+          <!-- YENİ EKLENEN SOSYAL MEDYA İKONLARI -->
+          <ul class="mobile-socials">
+            <li class="mobile-social-item">
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg width="16" height="16">
+                  <use href="./images/icons.svg/symbol-defs.svg#icon-instagram" />
+                </svg>
+              </a>
+            </li>
+            <li class="mobile-social-item">
+              <a href="#" class="social-link" aria-label="Twitter">
+                <svg width="16" height="16">
+                  <use href="./images/icons.svg/symbol-defs.svg#icon-twitter" />
+                </svg>
+              </a>
+            </li>
+            <li class="mobile-social-item">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <svg width="16" height="16">
+                  <use href="./images/icons.svg/symbol-defs.svg#icon-facebook" />
+                </svg>
+              </a>
+            </li>
+            <li class="mobile-social-item">
+              <a href="#" class="social-link" aria-label="Linkedin">
+                <svg width="16" height="16">
+                  <use href="./images/icons.svg/symbol-defs.svg#icon-linkedin" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <main class="main">
       <section class="section-one">
@@ -543,7 +613,10 @@
                       <use href="./images/icons.svg/symbol-defs.svg#icon-check" />
                     </svg>
                   </span>
-                  I accept the terms and conditions of the&nbsp;<a href="#" class="privacy-link">Privacy Policy</a>
+                <span class="checkbox-text-group">
+                  <span class="checkbox-text">I accept the terms and conditions of the</span>
+                  <a href="#" class="privacy-link">Privacy Policy</a>
+                </span>
                 </label>
               </div>
             </div>

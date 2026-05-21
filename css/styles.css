@@ -1,4 +1,4 @@
-body{
+html, body{
 font-family: 'Roboto',Arial, sans-serif;
     color: #434455;
     line-height: 1.5;
@@ -6,8 +6,9 @@ font-family: 'Roboto',Arial, sans-serif;
     background-color: #FFFFFF;
     font-size: 16px;
     max-width: 1440px;
+    min-width: 320px;
         margin: 0 auto;
-    
+    overflow-x: hidden;
 }
 * {
     box-sizing: border-box;
@@ -66,7 +67,15 @@ span {
 }
 
 .container {
+    min-width: 320px;
+    max-width: 428px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.container {
     max-width: 1158px;
+    min-width: 320px;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -80,34 +89,331 @@ header .container{
     
 }
 
+@media screen and (max-width: 767px) {
+
+    .navbar,
+    .address {
+        display: none;
+        /* Büyük ekran elemanları mobilde gizlenir */
+    }
+
+    .menu-open-btn {
+        display: block;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        stroke: #2E2F42;
+    }
+}
+
+/* --- C2, C3, C4, C5: MOBİL MENÜ GÖRSEL TASARIMI --- */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* C3: Düzen genişliği ile uyumlu */
+    height: 100%;
+    /* C4: Tüm görüntü alanını (viewport) kaplar */
+    background-color: #FFFFFF;
+    z-index: 9999;
+
+    /* C5: Menü başlangıçta tamamen gizlidir */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* C6: is-open sınıfı eklendiğinde menü görünür olur */
+.mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.mobile-menu-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 72px 24px 40px 16px;
+}
+
+.menu-close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #E7E9FC;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.menu-close-btn:hover,
+.menu-close-btn:focus {
+    background-color: #404BBF;
+    border: none;
+    fill: #ffffff;
+}
+
+.mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.mobile-nav ul li a {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.11;
+    letter-spacing: 0.02em;
+    color: #2E2F42;
+}
+
+.mobile-nav ul li a.active {
+    color: #404BBF;
+}
+
+.mobile-contacts-connect {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.mobile-address ul {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.mobile-phone {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.11;
+    color: #4D5AE5;
+}
+
+.mobile-email {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #434455;
+}
+.mobile-menu .mobile-socials{
+    display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 40px;
+}
+.mobile-menu .mobile-socials .social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    /* KESİN ÇÖZÜM: Arka plan rengi buraya kilitlendi */
+    background-color: #4D5AE5;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Üzerine gelindiğinde veya odaklanıldığında aktif renk (Ocean) */
+.mobile-menu .mobile-socials .social-link:hover,
+.mobile-menu .mobile-socials .social-link:focus {
+    background-color: #404BBF;
+    outline: none;
+}
+
+/* İçindeki SVG simgelerinin rengi ve görünürlüğü */
+.mobile-menu .mobile-socials .social-link svg {
+    width: 16px;
+    height: 16px;
+    fill: #F4F4FD;
+    /* Simge rengini beyaz/açık gri yapar */
+    display: block;
+}
+
+/* ==========================================================================
+   2. TABLET VARYASYONU: 768PX VE ÜZERİ (min-width: 768px)
+   ========================================================================== */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+
+    /* Mobil menüyü ve butonunu tablet/masaüstünde tamamen devre dışı bırakıyoruz */
+    .menu-open-btn,
+    .mobile-menu {
+        display: none !important;
+    }
+
+    /* Tablet yerleşim devreye girer (Yineleme yok, sadece değişen stiller) */
+    .navbar {
+        display: block;
+    }
+
+    .address {
+        display: block;
+    }
+
+    
+}
+
+
+
+/* ==========================================================================
+   3. MASAÜSTÜ VARYASYONU: 1158PX VE ÜZERİ (min-width: 1158px)
+   ========================================================================== */
+@media screen and (min-width: 1158px) {
+    .container {
+        max-width: 1158px;
+    }
+
+}
+
 
 .main {
     flex-grow: 1;
 }
 
 
-.section-two .container{
-  
-    padding: 120px 15px;
-    
+/* --- 1. VARSAYILAN MOBİL STİLLER (min-width: 320px) --- */
+.section-two {
+    padding: 96px 0;
+    /* Mobilde üst ve alt dikey dolgular */
 }
-.section-two .container ul{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    align-items: center;
 
-}
-.section-two .container ul li {
+/* Mobilde tüm maddeler tek sütun olarak alt alta dizilir */
+.section-two .container ul {
     display: flex;
-        flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+    /* Maddeler arasındaki dikey boşluk */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Mobilde her bir kartın genişlik sınırı */
+.section-two .container ul li {
+    width: 100%;
+    max-width: 264px;
+    /* Kartların mobilde aşırı yayılmasını önler */
+}
+
+/* KURAL: Gri İkon kutuları mobil ve tablette tamamen gizlidir! */
+.section-two .container .about-icon {
+    display: none;
+    justify-content: center;
+    align-items: center;
     width: 264px;
-    height: 224px;
-    
+    height: 112px;
+    background-color: #F4F4FD;
+    border-radius: 4px;
+    border: 1px solid #8E8F99;
 }
-.section-two .container h3{
-    padding-top: 8px;
+
+/* SVG Simgelerinin Ortak Boyutu (Alt sorgularda tekrar yazılmaz) */
+.section-two .container .about-icon svg {
+    display: block;
+    width: 64px;
+    height: 64px;
 }
+
+/* Mobilde başlıklar büyük ve ortalıdır */
+.section-two h3 {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.11;
+    letter-spacing: 0.02em;
+    color: #2E2F42;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+/* Paragrafların ortak stilleri */
+.section-two p {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 500;
+    /* Mobilde yazılar medium kalınlıktadır */
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: #434455;
+}
+
+
+/* --- 2. TABLET VARYASYONU (min-width: 768px) --- */
+@media screen and (min-width: 768px) {
+
+    /* Maddeler yan yana 2'li satırlar halinde dizilmeye başlar */
+    .section-two .container ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 64px 24px;
+        /* Satırlar arası 64px, sütunlar arası 24px */
+        justify-content: flex-start;
+    }
+
+    /* Kartlar tam olarak yan yana 2'li kusursuz matematiksel hesapla bölünür */
+    .section-two .container ul li {
+        width: calc((100% - 24px) / 2);
+        max-width: 356px;
+    }
+
+    /* Tablet ve masaüstünde başlıklar sola yaslanır ve küçülür */
+    .section-two h3 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    /* Paragraflar normal ağırlığına (Regular) döner */
+    .section-two p {
+        font-weight: 400;
+    }
+}
+
+
+/* --- 3. MASAÜSTÜ VARYASYONU (min-width: 1158px) --- */
+@media screen and (min-width: 1158px) {
+    .section-two {
+        padding: 120px 0;
+        /* Masaüstünde dikey dolgular artar */
+    }
+
+    /* Maddeler yan yana tek bir satırda düz akar, alt satıra geçmez */
+    .section-two .container ul {
+        gap: 24px;
+        /* Sadece sütunlar arası 24px boşluk kalır */
+    }
+
+    /* Kartlar yan yana kusursuz 4'lü dizilime kavuşur */
+    .section-two .container ul li {
+        width: calc((100% - 3 * 24px) / 4);
+        max-width: 264px;
+    }
+
+    /* KURAL: Gri İkon kutuları SADECE masaüstünde yeniden canlanır ve görünür olur */
+    .section-two .container .about-icon {
+        display: flex;
+        margin-bottom: 8px;
+    }
+}
+
+
 .logo {
     font-family: 'Raleway', Arial, sans-serif;
     font-weight: 700;
@@ -192,210 +498,333 @@ a:focus {
         padding-bottom: 0;
         text-align: center;
 }
-.section-one{
-    display: block;
-        text-align: center;
-        max-width: 1440px;
 
-        margin: 0 auto;
- 
-        padding: 188px 0;
-        background-color: #2E2F42;
-        background-image: linear-gradient(to bottom, rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url("../images/hero-background.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        color: #fff;
-    
+/* ==========================================================================
+   1. VARSAYILAN: MOBİL HERO (min-width: 320px'ten itibaren geçerli)
+   ========================================================================== */
+.section-one {
+    /* Sabit height: 600px KESİNLİKLE YOKTUR. Yükseklik padding ile oluşur. */
+    padding: 112px 0;
+    text-align: center;
+    background-color: #2E2F42;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    /* Mobil x1 Arka Plan Resmi */
+    background-image: linear-gradient(to bottom, rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+            url("../images/hero-background.png");
 }
+
+/* Mobilde başlığın ve butonun arasındaki boşluğu yöneten esnek yapı */
 .section-one .container {
     display: flex;
-    flex-direction: column; 
-    align-items: center;   
-    gap: 48px;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+    /* Mobilde H1 ile Buton arasındaki Figma boşluk değeri */
 }
-.section-one .container>h1{
-         font-size: 56px;
-        letter-spacing: 0.002em;
-        line-height: 1.07;
-        font-weight: 700;
+
+.section-one .section-title {
+    font-weight: 700;
+    font-size: 36px;
+    /* Mobilde başlık daha küçüktür */
+    line-height: 1.11;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+    max-width: 320px;
+    /* Mobilde yazının taşmasını önleyen sınır */
+    margin: 0;
+}
+
+/* Mobil x2 Ekranlar İçin (Retina) min-resolution Filtresi */
+@media screen and (max-width: 767px) and (min-resolution: 192dpi),
+screen and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
+    .section-one {
+        /* ÖNEMLİ: Klasörünüzdeki mobil 2x resminin adını yazın (Genelde hero-bg-mobile@2x.png'dir) */
+        background-image: linear-gradient(to bottom, rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+            url("../images/hero-background@2x.png");
+    }
+}
+
+
+/* ==========================================================================
+   2. TABLET VARYASYONU: 768PX VE ÜZERİ (min-width: 768px)
+   ========================================================================== */
+@media screen and (min-width: 768px) {
+    .section-one {
+        /* Üstteki padding, renk ve ortak özellikler aynen miras alındı (Gereksiz yineleme yok) */
+        /* Sadece tablet x1 resmi ezildi */
+        background-image: linear-gradient(to bottom, rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+                url("../images/hero-background.png");
+    }
+
+    .section-one .container {
+        gap: 36px;
+        /* Tablette H1 ile Buton arasındaki Figma boşluk değeri */
+    }
+
+    .section-one .section-title {
+        font-size: 56px;
         color: #FFFFFF;
+        /* Başlık tablet ekranında büyür */
+        line-height: 1.07;
         max-width: 496px;
-    
+        /* Yazının sığacağı ideal genişlik */
+    }
 }
-.section-one .container>button{
-    background-color: #4D5AE5;
-    color: white;
-    width: 169px;
-    height: auto;
-    padding: 16px 32px 16px 32px;
+
+/* Tablet x2 Ekranlar İçin (Retina) min-resolution Filtresi */
+@media screen and (min-width: 768px) and (max-width: 1157px) and (min-resolution: 192dpi),
+screen and (min-width: 768px) and (max-width: 1157px) and (-webkit-min-device-pixel-ratio: 2) {
+    .section-one {
+        /* ÖNEMLİ: Klasörünüzdeki tablet 2x resminin adını yazın (Genelde hero-bg-tablet@2x.png'dir) */
+        background-image: linear-gradient(to bottom, rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+            url("../images/hero-background@2x.png");
+    }
+}
+
+
+
+/* ==========================================================================
+   3. MASAÜSTÜ VARYASYONU: 1158PX VE ÜZERİ (min-width: 1158px)
+   ========================================================================== */
+@media screen and (min-width: 1158px) {
+    .section-one {
+        /* Masaüstünde dikey dolgular Figma orijinal değeri olan 188px'e çıkar */
+        padding: 188px 0;
+
+        /* Masaüstü x1 resmi ezildi */
+        background-image: linear-gradient(to bottom, rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+            url("../images/hero-background.png");
+    }
+
+    .section-one .container {
+        gap: 48px;
+        /* Masaüstünde H1 ile Buton arasındaki tam Figma boşluğu */
+    }
+}
+
+/* Masaüstü x2 Ekranlar İçin (Retina) min-resolution Filtresi */
+@media screen and (min-width: 1158px) and (min-resolution: 192dpi),
+screen and (min-width: 1158px) and (-webkit-min-device-pixel-ratio: 2) {
+    .section-one {
+        /* Masaüstü 2x Resmi */
+        background-image: linear-gradient(to bottom, rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+            url("../images/hero-background@2x.png");
+    }
+}
+
+/* ==========================================================================
+   HERO BUTONU ORTAK STİLLERİ (Tüm ekranlarda aynı kalan kurallar tek yerde toplanır)
+   ========================================================================== */
+.section-one .modal-open-btn {
+    display: inline-block;
+    min-width: 169px;
+    height: 56px;
+    padding: 16px 32px;
+    border: none;
     border-radius: 4px;
-    border:0px;
-    
+    background-color: #4D5AE5;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0;
 }
-.section-one .container>button:hover,button:focus {
+
+.section-one .modal-open-btn:hover,
+.section-one .modal-open-btn:focus {
     background-color: #404BBF;
-        color: white;
-        cursor: pointer;
 }
-.section-team{
-   
+
+
+/* --- 1. VARSAYILAN MOBİL STİLLER (min-width: 320px) --- */
+.section-team {
     background-color: #F4F4FD;
-
+    /* Açık gri kurumsal ekip arka planı */
+    padding: 96px 0;
+    /* Mobilde dikey dolgu alanı */
 }
 
-.section-team .container{
-    padding: 120px 15px;
-    
-  
-}
-.section-team .container ul{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 24px;
-        padding: 0;
-        margin: 0;
-       
-   
+/* Başlık altındaki boşluk gap ile yönetilir, margin kullanılmaz */
+.section-team .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+    /* Başlık ile kartlar arasındaki net Figma boşluğu */
 }
 
+/* Mobilde kartlar tek sütun olarak alt alta dizilir */
+.section-team .container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+    /* Kartların kendi aralarındaki dikey boşluk */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
 
-.section-team .container .team-card .team-socials {
+/* Ekip Kartı Genel Stilleri (Yineleme yok) */
+.section-team .container .team-card {
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 264px;
+    /* Kartların aşırı yayılmasını önler */
+    border-radius: 0px 0px 4px 4px;
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+        0px 1px 1px rgba(46, 47, 66, 0.16),
+        0px 2px 1px rgba(46, 47, 66, 0.08);
+    overflow: hidden;
+}
+
+/* Kartın İçindeki İsim ve Unvan Alanı */
+.section-team .context-text {
+    background-color: #FFFFFF;
+    padding: 32px 0 8px 0;
+    text-align: center;
+}
+
+/* Sosyal Medya İkon Alanı Kapsayıcısı */
+.section-team .team-socials {
     display: flex;
     justify-content: center;
-    background-color: white;
     align-items: center;
-    padding: 0 16px 32px 16px ;
     gap: 24px;
-  
-
-   
+    /* İkon butonları arasındaki boşluk */
+    padding-bottom: 32px;
+    background-color: #FFFFFF;
 }
 
-.section-two .container .about-icon{
-    display: flex;
-  
-    justify-content: center;
-  
-    align-items: center;
-    
-
-    width: 264px;
-   
-    height: 112px;
-    
-    background-color: #f4f4fd;
-    
- 
-   border: 1px solid rgba(142, 143, 153, 1);
-   border-radius: 4px;
-
-}
-
-.section-two .container .about-icon svg {
-   display: block;
-    width: 64px;  
-    height: 64px;
-
-}
-.social-link {
+/* UNUTULAN KRİTİK AYAR: İKON YUVARLAK ALANLARI VE BOYUTLARI */
+.section-team .social-link {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 40px;
-   
     height: 40px;
-
     border-radius: 50%;
- 
-    background-color: rgba(77, 90, 229, 1);
-    
-   
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-    
-   
+    background-color: #4D5AE5;
+    /* Orijinal kurumsal mavi */
+    /* Pürüzsüz hover/focus renk geçişi (Ödev Standardı) */
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.social-link svg {
-   
+/* Üzerine gelindiğinde veya odaklanıldığında simgeler etkin duruma geçmeli (Ödev Maddesi) */
+.section-team .social-link:hover,
+.section-team .social-link:focus {
+    background-color: #404BBF;
+    /* Aktif durum rengi (Ocean) */
+    outline: none;
+}
+
+/* SVG Simgelerinin Kesin Görünürlük ve Dolgu Ayarları */
+.section-team .social-link svg {
     width: 16px;
     height: 16px;
-   
-}
-.section-team .container .team-card{
-       
-        flex-direction: column;
-        height: 100%;
-        border: 1px solid #E7E9FC;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
-            0px 1px 1px rgba(46, 47, 66, 0.16),
-            0px 2px 1px rgba(46, 47, 66, 0.08);
-    overflow: hidden;
+    fill: #F4F4FD;
+    /* İkonu açık gri/beyaz yapar */
+    display: block;
 }
 
-.our-portfolio .container{
-    padding: 120px 15px;
+
+/* --- 2. TABLET / LAPTOP VARYASYONU (min-width: 768px) --- */
+@media screen and (min-width: 768px) {
+
+    /* Kartlar yan yana 2'li satırlar oluşturacak şekilde esnetilir */
+    .section-team .container ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 64px 24px;
+        /* Satırlar arası 64px, sütunlar arası 24px boşluk */
+        justify-content: center;
+        /* Kartları ortaya hizalar */
+    }
+
+    /* Kartlar tablet/laptop ekranlarında yan yana 2'li dizilir */
+    .section-team .container .team-card {
+        width: calc((100% - 24px) / 2);
+    }
 }
 
-.our-portfolio .container ul{
-             display: grid;
-            grid-template-columns: repeat(3, minmax(200px, 1fr));
-        gap: 48px 24px;
-            padding: 0;
-            margin: 0;
-            list-style: none;
+
+/* --- 3. MASAÜSTÜ VARYASYONU (min-width: 1158px) --- */
+@media screen and (min-width: 1158px) {
+    .section-team {
+        padding: 120px 0;
+        /* Masaüstünde üst/alt dolgular artar */
+    }
+
+    /* Kartlar yan yana tek bir satırda kırılmadan düz akar */
+    .section-team .container ul {
+        gap: 24px;
+        /* Sadece sütunlar arası 24px boşluk kalır */
+    }
+
+    /* Kartlar yan yana kusursuz 4'lü sütun dizilimine kavuşur */
+    .section-team .container .team-card {
+        width: calc((100% - 3 * 24px) / 4);
+    }
 }
+
+/* --- 1. VARSAYILAN MOBİL STİLLER (min-width: 320px) --- */
+.our-portfolio {
+    padding: 96px 0;
+    /* Mobilde üst ve alt dikey dolgular */
+}
+
+/* Başlık altındaki boşluk gap ile yönetilir, margin kullanılmaz */
+.our-portfolio .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+    /* Başlık ile kartlar arasındaki net Figma boşluğu */
+}
+
+/* Mobilde tüm listeler tek sütun olarak alt alta dizilir */
+.our-portfolio .container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    /* Mobilde kartlar arasındaki dikey boşluk */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Portfolyo Link Yapısı */
 .portfolio-link {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    text-decoration: none; 
+    text-decoration: none;
     color: inherit;
-    
 }
+
+/* Portfolyo Kartı Genel Stilleri (Yineleme yok) */
 .our-portfolio .container .item {
-   
+    width: 100%;
+    max-width: 396px;
+    /* Mobilde kartların çok aşırı yayılmasını önler */
     position: relative;
-    overflow: hidden;
     border: 1px solid #E7E9FC;
-    transform: translateZ(0);
-    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    
-}
-
-
-.our-portfolio .container .item:hover,
-.our-portfolio .container .item:focus-within {
-box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
-        0px 8px 24px rgba(46, 47, 66, 0.12),
-        0px 1px 4px rgba(46, 47, 66, 0.08);
-    outline: none;
-    cursor: pointer;
-}
-
-
-.portfolio-thumb {
-    position: relative;
-    overflow: hidden;
-   
-    transform: translateZ(0);
-   
-}
-
-
-.our-portfolio .container .item {
-    
-    border: 1px solid #E7E9FC;
-    border-radius: 8px;
- 
+    background-color: #FFFFFF;
     transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
+/* Etkin Durum (Hover/Focus): Tüm ekranlarda geçerli pürüzsüz gölge */
 .our-portfolio .container .item:hover,
 .our-portfolio .container .item:focus-within {
     box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
@@ -403,15 +832,28 @@ box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
         0px 1px 4px rgba(46, 47, 66, 0.08);
 }
 
+/* Resim Kapsayıcı Kutu */
+.portfolio-thumb {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    /* Tarayıcı taşma bug'larını önler */
+}
 
-.our-portfolio .container .portfolio-thumb .overlay {
+/* Kartın Altındaki Metin Bloğu */
+.portfolio-text {
+    padding: 32px 16px;
+    background-color: #FFFFFF;
+}
+
+/* BAĞLAM KURALI: Overlay perdesi mobil ve tablette tamamen gizlidir! */
+.our-portfolio .container .item .overlay {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    transform: translateY(101%);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     padding: 40px 32px;
     background-color: #4D5AE5;
     color: #F4F4FD;
@@ -421,97 +863,205 @@ box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
 }
 
 
-.our-portfolio .container .item:hover .overlay,
-.our-portfolio .container .item:focus-within .overlay {
-    transform: translateY(0);
-}
-.portfolio-link:focus-visible {
-    outline: 2px solid rgba(77, 90, 229, 1);
-    outline-offset: -2px;
-   
-}
+/* --- 2. TABLET VARYASYONU (min-width: 768px) --- */
+@media screen and (min-width: 768px) {
 
-
-.footer{
-    background-color: #2E2F42;
-    
-}
-.footer .container{
-    display: flex;
-    justify-content: flex-start;
-    align-items:first baseline;
-    gap: 120px;
-    color: white;
-    padding: 100px 15px;
-}
-.footer .container .content {
-        width: 264px;
-        height: 112px;
-}
-.footer .container .content p{
-    padding-top: 16px;
-}
-.footer .container .social-media p {
-    padding-bottom: 16px;
-}
-.footer .container .social-media .team-socials {
-    display: flex;
+    /* Kartlar yan yana 2'li satırlar oluşturacak şekilde esnetilir */
+    .our-portfolio .container ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 72px 24px;
+        /* Satırlar arası 72px, sütunlar arası 24px */
         justify-content: center;
-        align-items: center;
-  
-        gap: 16px;
+    }
+
+    /* Kartlar tablet ekranlarında yan yana kusursuz 2'li dizilir */
+    .our-portfolio .container .item {
+        width: calc((100% - 24px) / 2);
+        max-width: 356px;
+    }
 }
 
 
-.footer .container .social-media .team-socials .social-link:hover,
-.footer .container .social-media .team-socials .social-link:focus{
+/* --- 3. MASAÜSTÜ VARYASYONU (min-width: 1158px) --- */
+@media screen and (min-width: 1158px) {
+    .our-portfolio {
+        padding: 120px 0;
+        /* Masaüstünde dikey dolgu artar */
+    }
 
-    background-color:rgba(49, 208, 170, 1);
-  
-    color: #ffffff;
-    
-    transform: translateY(-3px);
+    /* Kartlar yan yana 3'lü dizilime geçecek şekilde boşluk ayarlanır */
+    .our-portfolio .container ul {
+        gap: 48px 24px;
+        /* Satırlar arası 48px, sütunlar arası 24px kalır */
+    }
+
+    /* Kartlar masaüstü ekranlarında yan yana tam 3'lü dizilir */
+    .our-portfolio .container .item {
+        width: calc((100% - 2 * 24px) / 3);
+        max-width: 360px;
+    }
+
+    /* BAĞLAM KURALI: Mavi overlay perdesi SADECE masaüstü genişlikte etkinleşir */
+    .our-portfolio .container .item .overlay {
+        display: block;
+        /* Gizlilik kaldırıldı */
+        transform: translateY(101%);
+        /* Başlangıçta alt sınırda gizli */
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Sadece masaüstünde, hover veya focus anında overlay yukarı kayar */
+    .our-portfolio .container .item:hover .overlay,
+    .our-portfolio .container .item:focus-within .overlay {
+        transform: translateY(0);
+    }
 }
 
 
-.subscribe-form {
-    display: flex;
-    flex-direction: row;
-   gap: 24px;
-   padding-top: 16px;
-}
-
-
-.subscribe-form input {
-    border: 1px solid white;
-    width: 264px;
-    height: 40px;
-    padding-left: 42px;
-    border-radius: 4px;
-    outline: none;
+/* --- 1. VARSAYILAN MOBİL STİLLER (min-width: 320px) --- */
+.footer {
     background-color: #2E2F42;
-    color: white;
-}
-.subscribe-form input::placeholder{
-    color: white;
-}
-
-.subscribe-form input:focus {
-    border: 1px solid white;
-}
-.subscribe-form input:focus::placeholder {
-    color: white;
+    /* Koyu lacivert kurumsal arka plan */
+    padding: 96px 0;
+    /* Mobilde üst/alt dikey dolgu */
 }
 
-.subscribe-icon{
+/* Mobilde tüm sütun blokları alt alta gelir ve ortalanır */
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+    /* Bloklar arasındaki dikey mesafe */
+}
+
+/* Sol Blok: Logo ve Yazı Alanı */
+.footer .content {
+    text-align: center;
+    /* Mobilde yazılar ortalanır */
+    max-width: 268px;
+}
+
+.footer .logo {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-family: 'Raleway', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.17;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #F4F4FD;
+    /* Logodaki STUDIO kısmı footer'da açık gri/beyaz olmalı */
+    text-decoration: none;
+}
+
+.footer .content p {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: #F4F4FD;
+}
+
+/* Orta Blok: Sosyal Medya Başlığı ve Listesi */
+.footer .social-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Mobilde ikon başlığını ortalar */
+}
+
+.footer .social-media>p,
+.footer .subscribe>p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+}
+
+/* BAĞLAM: Sosyal medya ikonları ve eksiksiz stilleri */
+.footer .team-socials {
+    display: flex;
+    gap: 16px;
+    /* Footer'da ikonların arası 16px olmalıdır (Figma Değeri) */
+}
+
+.footer .social-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #4D5AE5;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* İkonların üzerine gelindiğinde veya odaklanıldığında Yeşil (Green) renk şartı */
+.footer .social-link:hover,
+.footer .social-link:focus {
+    background-color: #31D0AA;
+    /* Footer'a özel aktif yeşil renk */
+    outline: none;
+}
+
+.footer .social-link svg {
     width: 24px;
+    /* Footer ikonları kartlardakinden biraz daha büyüktür */
     height: 24px;
+    fill: #F4F4FD;
+    display: block;
 }
 
+/* Sağ Blok: C3 Bülten (Subscribe) Form Alanı */
+.footer .subscribe {
+    width: 100%;
+    max-width: 396px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Mobilde başlığı ortalar */
+}
 
+/* BAĞLAM: Input ve Buton Düzeni */
+.footer .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    /* Mobilde input ve buton alt alta gelir */
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
 
+.footer .input-wrap {
+    width: 100%;
+}
 
-.subscribe-btn {
+/* E-posta Girdi Alanı */
+.footer .subscribe-form input {
+    width: 288px;
+    height: 40px;
+    border: 1px solid #FFFFFF;
+    background-color: transparent;
+    font-size: 12px;
+    line-height: 2;
+    letter-spacing: 0.04em;
+    padding-left: 16px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+    border-radius: 4px;
+    color: #FFFFFF;
+    outline: none;
+}
+
+.footer .subscribe-form input::placeholder {
+    color: #FFFFFF;
+}
+
+/* Abone Ol Butonu (C10 Şartı) */
+.footer .subscribe-btn {
     min-width: 165px;
     height: 40px;
     display: flex;
@@ -524,24 +1074,91 @@ box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
     letter-spacing: 0.04em;
     color: #FFFFFF;
     cursor: pointer;
-    background-color: rgba(77, 90, 229, 1);
+    background-color: #4D5AE5;
     border: none;
     border-radius: 4px;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 8px 24px 8px 24px;
 }
 
-.subscribe-btn:hover,
-.subscribe-btn:focus {
+.footer .subscribe-btn:hover,
+.footer .subscribe-btn:focus {
     background-color: #404BBF;
 }
 
-
-.subscribe-icon {
+/* C11: Uçak Simgesi */
+.footer .subscribe-icon {
     margin-left: 16px;
     fill: #FFFFFF;
+    width: 24px;
+    height: 24px;
 }
 
+
+/* --- 2. TABLET VARYASYONU (min-width: 768px) --- */
+@media screen and (min-width: 768px) {
+    .footer .container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        /* Blokların kırılıp aşağı geçebilmesi için */
+        align-items: baseline;
+        gap: 72px 24px;
+        /* Satırlar arası 72px, sütunlar arası 24px */
+        max-width: 582px;
+        /* Tablette formun düzgün durması için sınırlama */
+        margin: 0 auto;
+    }
+
+    /* Tablette yazılar sola yaslanır */
+    .footer .content,
+    .footer .social-media,
+    .footer .subscribe {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    /* Bülten formu tablet ekranında yan yana dizilmeye başlar */
+    .footer .subscribe-form {
+        flex-direction: row;
+        gap: 24px;
+    }
+
+    .footer .subscribe-form input {
+        width: 264px;
+        /* Figma standart tablet/masaüstü genişliği */
+    }
+}
+
+
+/* --- 3. MASAÜSTÜ VARYASYONU (min-width: 1158px) --- */
+@media screen and (min-width: 1158px) {
+    .footer {
+        padding: 100px 0;
+        /* Masaüstünde orijinal figma dolgusu */
+    }
+
+    .footer .container {
+        max-width: 1158px;
+        /* Tam genişlik kuralı */
+        flex-wrap: nowrap;
+        /* Tüm bloklar tek bir satırda yan yana durur */
+        gap: 0;
+        /* Boşlukları otomatik hizalayacağız */
+    }
+
+    /* Bloklar arası ideal figma mesafeleri */
+    .footer .content {
+        margin-right: 80px;
+    }
+
+    .footer .social-media {
+        margin-right: 80px;
+    }
+
+    .footer .subscribe {
+        margin-left: auto;
+        /* Bülten alanını en sağ köşeye kilitler */
+    }
+}
 
 .backdrop {
     position: fixed;
@@ -552,48 +1169,47 @@ box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
     background-color: rgba(46, 47, 66, 0.4);
     z-index: 999;
 
-
+    /* B6: Başlangıçta tamamen gizlidir */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
         visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
+/* B7: Otomatik test aracının aradığı görünürlük sınıfı */
 .backdrop.is-open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
 
-
+/* B3 & B4: Beyaz Modal Kutusu */
 .modal {
     position: absolute;
- 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
-  
 
-    width: 408px;
+    /* BAĞLAM: Mobilde modal genişliği Figma kuralına göre tam 288px'tir */
+    width: 288px;
+
     min-height: 584px;
     background-color: #FCFCFC;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
         0px 1px 3px rgba(0, 0, 0, 0.12),
         0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    padding: 72px 24px 24px 24px;
+    padding: 72px 16px 24px 16px;
+    /* Mobilde iç boşluk (padding) daraltılmıştır */
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 
 .backdrop:not(.is-open) .modal {
     transform: translate(-50%, -50%) scale(0.9);
 }
 
-
+/* B5: Sağ Üst Köşedeki Kapatma Butonu */
 .modal-close-btn {
     position: absolute;
     top: 24px;
@@ -616,85 +1232,105 @@ box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
 .modal-close-btn:focus {
     background-color: #404BBF;
     border: none;
-    fill: #ffffff;
+    fill: #FFFFFF;
 }
 
-.backdrop .modal .form-title{
-    font-family: "Roboto", sans-serif;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 1.5;
-        letter-spacing: 0.04em;
-        padding-bottom: 16px;
-        color: rgba(46, 47, 66, 1);
+/* --- FORM METİNLERİ VE GİRİŞ KUTULARI --- */
+.form-title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #2E2F42;
+    margin-bottom: 16px;
 }
-.backdrop .modal .form-element {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+
+.form-element {
+    margin-bottom: 8px;
 }
+
 .form-element label {
-    margin-bottom: 10px;
-    font-family: "Roboto", sans-serif;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 1.5;
-        letter-spacing: 0.04em;
+    display: block;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: #8E8F99;
+    margin-bottom: 4px;
 }
 
 .input-wrap {
     position: relative;
+    display: block;
+    width: 100%;
 }
-.form-element .form-icon {
-    position: absolute;
-    top: 50%;
-    left: 12px;
-    width: 18px;
-    height: 24px;
-   fill: rgba(46, 47, 66, 1);
-    transform: translateY(-50%);
-    cursor: pointer;
-    
-}
-.form-element input {
-    border: none;
-    min-width: 360px;
+
+/* Giriş Alanları (Input) */
+.input-wrap input {
+    width: 100%;
     height: 40px;
     border: 1px solid rgba(46, 47, 66, 0.4);
-    padding-left: 42px;
     border-radius: 4px;
-    outline: none;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-            border 250ms cubic-bezier(0.4, 0, 0.2, 1),
-            fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.form-element textarea{
-    border: none;
-        min-width: 360px;
-        border: 1px solid rgba(46, 47, 66, 0.4);
-            padding-left: 16px;
-            border-radius: 4px;
-            outline: none;
-            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-                    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
-                    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.form-element textarea::placeholder{
-    
-    font-family: "Roboto", sans-serif;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 1.5;
-        letter-spacing: 0.04em;
-}
-.form-element input:focus {
-    border: 1px solid rgba(77, 90, 229, 1);
+    background-color: transparent;
+    padding-left: 38px;
+    /* Soldaki ikona tam yer açar */
+    outline: transparent;
+    color: #2E2F42;
+    font-size: 12px;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.form-element input:focus + .form-icon {
-    fill: rgba(77, 90, 229, 1);
+/* Giriş İkonlarının Kutunun İçine Sabitlenmesi */
+.form-icon {
+    position: absolute;
+    left: 16px;
+    /* Kutunun tam sol sınırından içeri kilitler */
+    top: 50%;
+    transform: translateY(-50%);
+    /* Dikey eksende tam ortalar */
+    width: 18px;
+    height: 18px;
+    fill: #2E2F42;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
 }
 
+/* Tıklanma / Odaklanma (Focus) Durumları */
+.input-wrap input:focus {
+    border-color: #4D5AE5;
+}
+
+/* !important içermeyen, harici sprite ikonları da boyayan kesin focus kuralı */
+.input-wrap:focus-within .form-icon {
+    fill: #4D5AE5;
+}
+
+/* Yorum Kutusu (Textarea) */
+.form-element textarea {
+    width: 100%;
+    height: 120px;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: rgba(46, 47, 66, 0.4);
+    border: 1px solid rgba(46, 47, 66, 0.4);
+    border-radius: 4px;
+    background-color: transparent;
+    padding: 8px 16px;
+    outline: transparent;
+    resize: none;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-element textarea:focus {
+    border-color: #4D5AE5;
+}
+
+.form-element textarea::placeholder {
+    color: rgba(46, 47, 66, 0.4);
+}
+
+/* --- GİZLİLİK SÖZLEŞMESİ (CHECKBOX) ALANI --- */
 .form-checkbox {
     margin-bottom: 24px;
 }
@@ -704,15 +1340,40 @@ box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
     line-height: 1.17;
     letter-spacing: 0.04em;
     color: #8E8F99;
+    /* Cümlenin varsayılan gri rengi */
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-            border 250ms cubic-bezier(0.4, 0, 0.2, 1),
-            fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Mobilde yazıyı ve linki alt alta getiren kapsayıcı */
+.checkbox-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
 
+.checkbox-text {
+    display: block;
+    color: #8E8F99;
+    /* Metnin siyahlaşmasını/maviye dönmesini kesin önler */
+}
+
+/* Sadece Linkin Mavi Kalması */
+.checkbox-label .privacy-link {
+    color: #4D5AE5;
+    text-decoration: underline;
+    display: inline-block;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkbox-label .privacy-link:hover,
+.checkbox-label .privacy-link:focus {
+    color: #404BBF;
+    outline: none;
+}
+
+/* Yapay Kare Checkbox Kutusu */
 .custom-checkbox {
     width: 16px;
     height: 16px;
@@ -721,28 +1382,51 @@ box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    fill: transparent; 
+    fill: transparent;
     margin-right: 8px;
-    flex-shrink: 0; 
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), 
-                border 250ms cubic-bezier(0.4, 0, 0.2, 1), 
-                fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 1px;
+    flex-shrink: 0;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-.visually-hidden:checked + .checkbox-label .custom-checkbox {
-    background-color: #404BBF; 
-    border: none;             
-    fill: #F4F4FD;           
+/* İşaretlendiğinde kutunun mavi, içindeki tikin beyaz olması */
+.form-checkbox .visually-hidden:checked+.checkbox-label .custom-checkbox {
+    background-color: #404BBF;
+    border: none;
+    fill: #F4F4FD;
 }
 
-
-.privacy-link {
-    color: #4D5AE5;
-    text-decoration: underline;
+/* --- GÖNDER BUTONU DÜZENİ --- */
+.form-button {
+    width: 100%;
 }
 
+.form-btn {
+    display: block;
+    min-width: 169px;
+    height: 56px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    background-color: #4D5AE5;
+    border: none;
+    border-radius: 4px;
+    margin: 0 auto;
+    /* Tam ortalar */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.form-btn:hover,
+.form-btn:focus {
+    background-color: #404BBF;
+}
+
+/* Orijinal Çirkin Kutuyu Gizleyen Sınıf */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -756,23 +1440,27 @@ box-shadow: 0px 4px 16px rgba(46, 47, 66, 0.16),
     overflow: hidden;
 }
 
-.form-btn{
-    min-width: 169px;
-        height: 56px;
-        display: block;
-            margin-left: auto;
-            margin-right: auto;
-        font-family: "Roboto", sans-serif;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 1.5;
-        letter-spacing: 0.04em;
-        color: #FFFFFF;
-        cursor: pointer;
-        background-color: rgba(77, 90, 229, 1);
-        border: none;
-        border-radius: 4px;
-        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        padding: 8px 24px 8px 24px;
-    
+
+/* ==========================================================================
+   2. TABLET & MASAÜSTÜ VARYASYONU (min-width: 768px'ten itibaren geçerli)
+   ========================================================================== */
+@media screen and (min-width: 768px) {
+    .modal {
+        /* BAĞLAM: Büyük ekranlarda genişlik 408px'e yükselir */
+        width: 408px;
+        padding: 72px 24px 24px 24px;
+        /* Orijinal büyük ekran paddingleri */
+    }
+
+    /* Büyük ekranlarda yazı ve link yan yana tek bir satırda akar */
+    .checkbox-text-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .checkbox-label {
+        align-items: center;
+        /* Kare kutuyu metne göre dikeyde ortalar */
+    }
 }
